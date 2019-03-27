@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { api } from "../../services/api";
 import { verifyToken, logout } from "../../services/auth";
+import Moment from 'react-moment';
+import 'moment-timezone';
 import {
   Jumbotron,
   H1,
@@ -222,7 +224,7 @@ export default class Home extends Component {
                   <small>
                     - {post.texto} <br /> <br />
                     <span style={{ fontSize: "10px" }}>
-                      {post.date} - {post.campus} - Anonymous
+                      { <Moment format="HH:mm - DD/MM/YYYY">{post.date}</Moment>} - {post.campus}
                     </span>
                   </small>
                 </CardBody2>
