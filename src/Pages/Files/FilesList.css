@@ -1,0 +1,26 @@
+.container {
+  width: "100%";
+  margin-top: 5px;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+
+.hr {
+  border: 1px solid #dddd;
+  margin: 0px;
+  padding: 0px;
+  background: rgba(122, 130, 136, 0.2);
+}
+
+
+.row {
+  margin-left: 2px;
+  width: "100%";
+  justify-content: center;
+}
+
+.card {
+  width: 21rem;
+  background: rgba(122, 130, 136, 0.2);
+  padding: 0px;
+}
