@@ -54,7 +54,7 @@ export default class Registrar extends Component {
           curso = "required_BMC";
           cursoName =  "Bacharelado Matematica Computacional";
           cargaHoraria = 2196
-          cargaHorariaComplementar = 144;
+          cargaHorariaComplementar = 72;
         }
         if (this.state.curso === "ENGENHARIA DE MATERIAIS") {
           curso = "required_EM";

@@ -99,7 +99,7 @@ export default class FilesList extends Component {
                         {infos.descricao} <br />
                         <small style={{ fontSize: "10px" }}>
                           {" "}
-                          Adicionado Por: {infos.autor} em {infos.date}{" "}
+                          Adicionado Por: {infos.autor}
                         </small>
                       </div>
                     </div>

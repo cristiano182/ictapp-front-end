@@ -4,29 +4,16 @@ import "./App.css";
 
 import Routes from "../Routes/Routes";
 import Menu from "../Menu/Menu";
-import Hall from "../HallOfFame/Hall";
-
-
-
 
 export default class App extends Component {
-
   render() {
     return (
-     
-      <Router style={{width: "100%"}}>
+      <Router style={{ width: "100%" }}>
         <div className="App">
           <Menu />
-          <Hall />
           <Routes />
-          </div>
-
+        </div>
       </Router>
-     
     );
-
-   
   }
-
-
 }
