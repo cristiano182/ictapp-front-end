@@ -23,11 +23,7 @@ export default class Login extends Component {
           });
         } else {
            login(user.data);
-
-           return (
-            <Redirect to="/" />
-           )
-         
+          this.props.history.replace("/");
         }
       } catch (err) {
         this.setState({ error: err });
