@@ -22,7 +22,7 @@ export default class Login extends Component {
           });
         } else {
           login(user.data);
-          window.location.href = 'ictapp.net/#/';
+          this.props.history.replace("/homeuser");
         }
       } catch (err) {
         this.setState({ error: err });
