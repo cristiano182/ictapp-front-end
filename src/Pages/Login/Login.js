@@ -15,6 +15,8 @@ export default class Login extends Component {
     const { userID } = res;
     if (userID) {
       try {
+
+          this.props.history.replaceState(null, null, '')
         const user = await api.post("/users/login/", { userID });
         if (!user.data) {
           this.setState({
