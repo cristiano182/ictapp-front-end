@@ -11,7 +11,10 @@ export default class Login extends Component {
       error: ""
     };
   }
-
+componentDidMount()
+{
+  
+}
   
 
   responseFacebook = async res => {
@@ -28,7 +31,7 @@ export default class Login extends Component {
         } else {
 
           login(user.data);
-         await setTimeout(window.location.reload(), 5000)
+         this.props.history.push('/')
          
           /*
           return (
