@@ -12,7 +12,8 @@ export default class FilesList extends Component {
     this.state = {
       error: "",
       arquivos: [],
-      skip: 0
+      skip: 0,
+      user: []
     };
   }
   async componentDidMount() {
@@ -23,6 +24,14 @@ export default class FilesList extends Component {
       .then(files => this.setState({ arquivos: files }))
       .catch(err => console.log(err));
     this.setState({ skip: 0 });
+
+    if (isAuthenticated()) {
+      await api
+        .get("/users/")
+        .then(res => res.data)
+        .then(u => this.setState({ user: u }))
+        .catch(err => console.log(err + "erro ao carregar usuario"));
+    }
   }
 
   onClickLoad = async e => {
@@ -35,21 +44,14 @@ export default class FilesList extends Component {
       });
   };
 
-  onClickDelete(info_id,uc_id)
-  {
-    if(isAuthenticated())
-    {
-      let obj = {
-        uc_id,
-        info_id
-      }
-      api.delete('/files',obj)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-
+  async onClickDelete(uc_id, info_id) {
+    if (isAuthenticated()) {
+      const obj = {
+        uc_id: uc_id,
+        info_id: info_id
+      };
+      await api.post("/files/delete/", obj).catch(err => console.log(err));
     }
-
-
   }
 
   onClick(_id, name_uc) {
@@ -121,10 +123,6 @@ export default class FilesList extends Component {
                         <small style={{ fontSize: "10px" }}>
                           {" "}
                           Adicionado Por: {infos.autor}{" "}
-                          <button  className="btn btn-danger" onClick={e => this.onClickDelete(infos._id,arquivo._id)}> 
-
-                          </button>
-                          {' '}
                           <img
                             src={
                               infos.foto
@@ -140,6 +138,20 @@ export default class FilesList extends Component {
                               padding: "0px"
                             }}
                           />
+                          {this.state.user.role === 1 ? (
+                            <button
+                              className="btn btn-danger"
+                              style={{ padding: "0px" }}
+                              onClick={e =>
+                                this.onClickDelete(arquivo._id, infos._id)
+                              }
+                            >
+                              {" "}
+                              Delete
+                            </button>
+                          ) : (
+                            ""
+                          )}
                         </small>
                       </div>
                     </div>
