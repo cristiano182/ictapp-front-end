@@ -60,9 +60,7 @@ export default class App extends Component {
     else {
       const infos = {
         autor: this.state.user.name,
-        link:
-          "https://drive.google.com/drive/folders/" +
-          this.state.pastaFileCurrent,
+        link: this.state.pastaFileCurrent,
         descricao: this.state.descricao,
         foto: this.state.user.foto
       };

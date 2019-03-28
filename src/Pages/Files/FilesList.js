@@ -44,13 +44,19 @@ export default class FilesList extends Component {
       });
   };
 
-  async onClickDelete(uc_id, info_id) {
+  async onClickDelete(uc_id, info_id, info_link) {
     if (isAuthenticated()) {
       const obj = {
         uc_id: uc_id,
         info_id: info_id
       };
       await api.post("/files/delete/", obj).catch(err => console.log(err));
+
+      await apiGoogleDrive.delete(
+        "https://www.googleapis.com/drive/v3/files/" + info_link
+      );
+
+      this.componentDidMount();
     }
   }
 
@@ -110,7 +116,10 @@ export default class FilesList extends Component {
                         <a
                           className="nav-link"
                           style={{ color: "orange" }}
-                          href={infos.link}
+                          href={
+                            "https://drive.google.com/drive/folders/" +
+                            infos.link
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -143,7 +152,11 @@ export default class FilesList extends Component {
                               className="btn btn-danger"
                               style={{ padding: "0px" }}
                               onClick={e =>
-                                this.onClickDelete(arquivo._id, infos._id)
+                                this.onClickDelete(
+                                  arquivo._id,
+                                  infos._id,
+                                  infos.link
+                                )
                               }
                             >
                               {" "}
