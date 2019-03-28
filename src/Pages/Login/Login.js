@@ -23,8 +23,8 @@ export default class Login extends Component {
           });
         } else {
            login(user.data);
-           window.location = "homeuser"
-          //this.props.history.replace("/");
+           
+          this.props.history.push("/homeuser");
         }
       } catch (err) {
         this.setState({ error: err });
