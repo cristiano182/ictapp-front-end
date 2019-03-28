@@ -8,6 +8,7 @@ export default class FilesList extends Component {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.onClickLoad = this.onClickLoad.bind(this);
+    this.onClickDelete = this.onClickDelete.bind(this);
     this.state = {
       error: "",
       arquivos: [],
