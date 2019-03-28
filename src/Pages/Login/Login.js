@@ -21,7 +21,7 @@ export default class Login extends Component {
             error: "Usuario nao cadastrado, Por favor Registre-se"
           });
         } else {
-          await login(user.data);
+           login(user.data);
           this.props.history.push("/");
         }
       } catch (err) {
