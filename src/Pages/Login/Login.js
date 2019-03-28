@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { login } from "../../services/auth";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { api } from "../../services/api";
@@ -15,8 +15,6 @@ export default class Login extends Component {
     const { userID } = res;
     if (userID) {
       try {
-
-       console.log(window.history)
         const user = await api.post("/users/login/", { userID });
         if (!user.data) {
           this.setState({
@@ -24,7 +22,9 @@ export default class Login extends Component {
           });
         } else {
           login(user.data);
-          this.props.history.push("/")
+          return (
+            <Redirect to="/login" />
+          )
         }
       } catch (err) {
         this.setState({ error: err });
@@ -43,7 +43,7 @@ export default class Login extends Component {
             {this.state.error}{" "}
           </div>
         )}
-        
+
         <div
           className="container bg-dark"
           style={{
@@ -56,8 +56,10 @@ export default class Login extends Component {
             width: "100%"
           }}
         >
-        <label  style={{color: "#ddd"}}><strong>Login</strong></label>
-        <br />
+          <label style={{ color: "#ddd" }}>
+            <strong>Login</strong>
+          </label>
+          <br />
           {/*
         <form onSubmit={this.onSubmitLogar}>
           <div className="form-row">
