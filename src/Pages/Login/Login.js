@@ -15,6 +15,7 @@ export default class Login extends Component {
     const { userID } = res;
     if (userID) {
       try {
+        
         const user = await api.post("/users/login/", { userID });
         if (!user.data) {
           this.setState({
@@ -22,9 +23,11 @@ export default class Login extends Component {
           });
         } else {
           login(user.data);
+          window.location.reload();
+          /*
           return (
             <Redirect to="/login" />
-          )
+          )*/
         }
       } catch (err) {
         this.setState({ error: err });
