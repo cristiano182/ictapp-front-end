@@ -22,7 +22,7 @@ export default class Login extends Component {
           });
         } else {
           login(user.data);
-          this.props.history.replace("/homeuser");
+          this.props.history.replaceState("/homeuser");
         }
       } catch (err) {
         this.setState({ error: err });
