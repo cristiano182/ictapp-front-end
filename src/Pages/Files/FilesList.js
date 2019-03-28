@@ -34,9 +34,12 @@ export default class FilesList extends Component {
       });
   };
 
-  onClick(_id) {
+  onClick(_id, name_uc) {
     if (isAuthenticated()) {
-      this.props.history.push("/files/add", _id);
+      this.props.history.push({
+        pathname: "/files/add",
+        state: { details: _id, name: name_uc }
+      });
     } else {
       window.scrollTo(0, 0);
       this.setState({
@@ -64,7 +67,7 @@ export default class FilesList extends Component {
               <label
                 className="btn-primary"
                 style={{ padding: "2px", color: "#ddd", borderRadius: "10px" }}
-                onClick={e => this.onClick(arquivo._id)}
+                onClick={e => this.onClick(arquivo._id, arquivo.name)}
               >
                 <strong>{arquivo.name}</strong>
               </label>
@@ -99,7 +102,22 @@ export default class FilesList extends Component {
                         {infos.descricao} <br />
                         <small style={{ fontSize: "10px" }}>
                           {" "}
-                          Adicionado Por: {infos.autor}
+                          Adicionado Por: {infos.autor}{" "}
+                          <img
+                            src={
+                              infos.foto
+                                ? infos.foto
+                                : "https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg"
+                            }
+                            className="mr-3"
+                            alt="..."
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              borderRadius: "200px",
+                              padding: "0px"
+                            }}
+                          />
                         </small>
                       </div>
                     </div>

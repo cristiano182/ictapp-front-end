@@ -60,7 +60,7 @@ export const Div1 = styled.div.attrs({
 })``;
 
 export const Label = styled.div.attrs({
-  for: "message-text",
+  htmlFor: "message-text",
   className: "col-form-label",
   style: {
     color: "#ddd",
@@ -70,7 +70,7 @@ export const Label = styled.div.attrs({
 })``;
 
 export const Label2 = styled.div.attrs({
-  for: "recipient-name",
+  htmlFor: "recipient-name",
   className: "col-form-label",
   style: { color: "#ddd", paddingTop: "1px", marginTop: "1px" }
 })``;

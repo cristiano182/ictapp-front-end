@@ -19,7 +19,8 @@ export default class App extends Component {
     error: "",
     pastaPublica: "1BMmVZwOAc7GVEGBGB1oxegy2O3tbNgh0",
     pastaFileCurrent: "",
-    id_uc: ""
+    id_uc: "",
+    name_uc: ''
   };
 
   async componentDidMount() {
@@ -41,7 +42,7 @@ export default class App extends Component {
       )
       .then(p => localStorage.setItem("accessToken", p.data.access_token))
       .catch(erro => console.log(erro));
-    this.setState({ id_uc: this.props.location.state });
+    this.setState({ id_uc: this.props.location.state.details,name_uc: this.props.location.state.name });
     this.CreatePasteDrive();
   }
 
@@ -62,7 +63,8 @@ export default class App extends Component {
         link:
           "https://drive.google.com/drive/folders/" +
           this.state.pastaFileCurrent,
-        descricao: this.state.descricao
+        descricao: this.state.descricao,
+        foto: this.state.user.foto
       };
       await api
         .put("/files/" + this.state.id_uc, infos)
@@ -205,10 +207,10 @@ export default class App extends Component {
       >
         <label className="btn btn-primary" style={styles.label}>
           <strong style={{ padding: "2px", color: "#ddd" }}>
-            CALCULO NUMERICO
+          {this.state.name_uc}
           </strong>
         </label>
-         <br />
+        <br />
 
         <label style={{ color: "#ddd" }} className="">
           {this.state.error ? (

@@ -182,7 +182,7 @@ export default class Home extends Component {
                   className="form-control form-control-sm"
                   style={{ width: "400px" }}
                 >
-                  <option selected> Informe seu Campus</option>
+                  <option > Informe seu Campus</option>
                   <option>Baixada Santista</option>
                   <option>São José dos Campos</option>
                   <option>Osasco</option>

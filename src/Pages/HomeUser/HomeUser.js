@@ -285,13 +285,13 @@ export default class HomeUser extends Component {
           <CardBody2>
             {this.state.disciplinasCursadas.map(p => {
               return (
-                <p key={p.name} style={{ margin: "1px" }}>
+                <div key={p.name} style={{ margin: "1px" }}>
                   <small>
                     <Button onClick={e => this.onClickRemover(p)}>
                       <small style={{ color: "blue" }}>-</small> {p.name}
                     </Button>
                   </small>
-                </p>
+                </div>
               );
             })}
           </CardBody2>
@@ -305,13 +305,13 @@ export default class HomeUser extends Component {
             {this.state.dados.map(dado => {
               if (dado[this.state.user.curso])
                 return (
-                  <p key={dado._id} style={{ margin: "1px" }}>
+                  <div key={dado._id} style={{ margin: "1px" }}>
                     <small>
                       <Button onClick={e => this.onClickAdicionar(dado)}>
                         <small style={{ color: "blue" }}>-</small> {dado.name}
                       </Button>
                     </small>
-                  </p>
+                  </div>
                 );
             })}
           </CardBody2>
