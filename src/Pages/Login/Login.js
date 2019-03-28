@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link , Redirect} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { login } from "../../services/auth";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { api } from "../../services/api";
@@ -22,9 +22,7 @@ export default class Login extends Component {
           });
         } else {
           login(user.data);
-          return (
-            <Redirect to='/login' />
-          )
+          this.props.history.push("/testee");
         }
       } catch (err) {
         this.setState({ error: err });
