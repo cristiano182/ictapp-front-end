@@ -80,7 +80,7 @@ export default class Registrar extends Component {
           cursoName
         }).catch(err => console.log(err))
 
-          this.props.history.push("/login");
+        this.props.history.push("/login");
       } catch (err) {
         this.setState({ error: 'Erro ao tentar registrar' + err });
       }

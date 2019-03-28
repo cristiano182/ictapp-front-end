@@ -20,8 +20,8 @@ export default class Routes extends Component {
         <Route exact path="/" component={Home} />
           <Route path="/files/add"component={ isAuthenticated() ?  FilesAdd : Login}  />
           <Route  path="/homeuser"  component={ isAuthenticated() ?  HomeUser : Login}  />
-          <Route path="/login" component={Login} />
-          <Route path="/registrar" component={ Registrar}/>     
+          <Route path="/login" component={ isAuthenticated() ?  Home : Login} />
+          <Route path="/registrar" component={ isAuthenticated() ?  Home : Registrar}/>     
           <Route path="/listagemucs" component={ListagemUcs} /> 
           <Route exact path="/files" component={Files} />
           <Route component={PageNotFound} />
