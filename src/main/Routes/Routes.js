@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { isAuthenticated } from "../../services/auth";
 
 import Home from "../../Pages/Home/Home";
-import PageNotFound from "../../Pages/PageNotFound/PageNotFound";
 import Registrar from "../../Pages/Registrar/Registrar";
 import Login from "../../Pages/Login/Login";
 import HomeUser from "../../Pages/HomeUser/HomeUser";
@@ -24,7 +23,7 @@ export default class Routes extends Component {
           <Route path="/registrar" component={ isAuthenticated() ?  Home : Registrar}/>     
           <Route path="/listagemucs" component={ListagemUcs} /> 
           <Route exact path="/files" component={Files} />
-          <Route component={PageNotFound} />
+          <Route component={Home} />
         </Switch>
       </main>
     );
