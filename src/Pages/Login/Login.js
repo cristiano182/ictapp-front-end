@@ -27,8 +27,9 @@ export default class Login extends Component {
           });
         } else {
 
-         await login(user.data);
-          window.location.reload();
+          login(user.data);
+         await setTimeout(window.location.reload(), 5000)
+         
           /*
           return (
             <Redirect to="/login" />
