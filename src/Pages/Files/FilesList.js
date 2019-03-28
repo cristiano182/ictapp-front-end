@@ -34,6 +34,23 @@ export default class FilesList extends Component {
       });
   };
 
+  onClickDelete(info_id,uc_id)
+  {
+    if(isAuthenticated())
+    {
+      let obj = {
+        uc_id,
+        info_id
+      }
+      api.delete('/files',obj)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+
+    }
+
+
+  }
+
   onClick(_id, name_uc) {
     if (isAuthenticated()) {
       this.props.history.push({
@@ -103,6 +120,10 @@ export default class FilesList extends Component {
                         <small style={{ fontSize: "10px" }}>
                           {" "}
                           Adicionado Por: {infos.autor}{" "}
+                          <button  className="btn btn-danger" onClick={e => this.onClickDelete(infos._id,arquivo._id)}> 
+
+                          </button>
+                          {' '}
                           <img
                             src={
                               infos.foto
