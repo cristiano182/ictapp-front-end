@@ -16,7 +16,7 @@ export default class Login extends Component {
     if (userID) {
       try {
 
-        window.location.href='https://ictapp.net'
+       console.log(window.history)
         const user = await api.post("/users/login/", { userID });
         if (!user.data) {
           this.setState({
