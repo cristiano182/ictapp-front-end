@@ -11,28 +11,21 @@ export default class Login extends Component {
       error: ""
     };
   }
-componentDidMount()
-{
-  
-}
-  
+  componentDidMount() {}
 
   responseFacebook = async res => {
     const { userID } = res;
     if (userID) {
-
       try {
-        
         const user = await api.post("/users/login/", { userID });
         if (!user.data) {
           this.setState({
             error: "Usuario nao cadastrado, Por favor Registre-se"
           });
         } else {
-
           login(user.data);
-         this.props.history.push('/')
-         
+          this.props.history.push("/");
+
           /*
           return (
             <Redirect to="/login" />
