@@ -12,15 +12,12 @@ export default class Login extends Component {
     };
   }
 
-  componentDidMount()
-  {
-
-    window.location.reload();
-  }
+  
 
   responseFacebook = async res => {
     const { userID } = res;
     if (userID) {
+
       try {
         
         const user = await api.post("/users/login/", { userID });
@@ -29,8 +26,9 @@ export default class Login extends Component {
             error: "Usuario nao cadastrado, Por favor Registre-se"
           });
         } else {
-          login(user.data);
-          
+
+         await login(user.data);
+          window.location.reload();
           /*
           return (
             <Redirect to="/login" />
