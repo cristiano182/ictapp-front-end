@@ -11,6 +11,13 @@ export default class Login extends Component {
       error: ""
     };
   }
+
+  componentDidMount()
+  {
+
+    window.location.reload();
+  }
+
   responseFacebook = async res => {
     const { userID } = res;
     if (userID) {
@@ -23,7 +30,7 @@ export default class Login extends Component {
           });
         } else {
           login(user.data);
-          window.location.reload();
+          
           /*
           return (
             <Redirect to="/login" />
