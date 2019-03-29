@@ -17,6 +17,7 @@ export default class Registrar extends Component {
     const foto = res.picture.data.url;
     if (!this.state.curso) {
       this.setState({ error: "Por favor informe o seu curso." });
+      this.props.history.push('/registrar')
     } else {
       try {
         let curso;
@@ -76,8 +77,6 @@ export default class Registrar extends Component {
             cursoName
           })
           .catch(err => console.log(err));
-
-        this.props.history.push("/");
       } catch (err) {
         this.setState({ error: "Erro ao tentar registrar" + err });
       }
