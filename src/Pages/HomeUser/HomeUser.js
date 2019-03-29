@@ -167,7 +167,7 @@ export default class HomeUser extends Component {
                 <select
                   id="inputState"
                   className="form-control"
-                  style={{ fontSize: "13px" }}
+                  style={{ fontSize: "12px" }}
                   onChange={e => this.setState({ newCurso: e.target.value })}
                 >
                   <option selected>NOVO CURSO</option>

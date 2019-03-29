@@ -5,16 +5,18 @@ import { api } from "../../services/api";
 export default class Registrar extends Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
     this.state = {
       error: "",
-      curso: ""
+      curso: "",
+      user: null
     };
   }
 
-  responseFacebook = async res => {
-    const { email, name } = res;
-    const userID = res.userID;
-    const foto = res.picture.data.url;
+  async componentDidMount() {
+    await this.setState({ user: this.props.location.state });
+  }
+  async onClick() {
     if (!this.state.curso) {
       this.setState({ error: "Por favor informe o seu curso." });
     } else {
@@ -66,17 +68,17 @@ export default class Registrar extends Component {
 
         await api
           .post("/users/", {
-            email,
-            name,
-            userID,
-            foto,
-            curso,
+            email: this.state.user.email,
+            name: this.state.user.name,
+            userID: this.state.user.userID,
+            foto: this.state.user.picture.data.url,
+            curso: this.state.curso,
             cargaHoraria,
             cargaHorariaComplementar,
             cursoName
           })
           .catch(err => console.log(err));
-          this.props.history.push('/login')
+        this.props.history.push("/");
       } catch (err) {
         this.setState({ error: "Erro ao tentar registrar" + err });
       }
@@ -124,6 +126,7 @@ export default class Registrar extends Component {
               Curso
             </label>
             <select
+            style={{fontSize: '12px'}}
               id="inputState"
               className="form-control"
               onChange={e => this.setState({ curso: e.target.value })}
@@ -147,20 +150,13 @@ export default class Registrar extends Component {
           <small>Registre-se com Google</small>
            </Link> */}
 
-            <FacebookLogin
-              appId="331309754176413"
-              fields="name,email,picture"
-              callback={e => this.responseFacebook(e)}
-              render={renderProps => (
-                <button
-                  className="btn btn-lg btn-primary btn-block "
-                  onClick={renderProps.onClick}
-                >
-                  <i className="fab fa-facebook-f mr-2" />
-                  <small>Registre-se com Facebook</small>
-                </button>
-              )}
-            />
+            <button
+              onClick={this.onClick}
+              style={{ padding: "0px", borderRadius: '5px' }}
+              className="btn-success"
+            >
+              Registrar
+            </button>
           </div>
         </div>
       </div>

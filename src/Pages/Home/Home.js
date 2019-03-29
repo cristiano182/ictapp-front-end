@@ -186,7 +186,7 @@ export default class Home extends Component {
                   onChange={e => this.setState({ TextoCampus: e.target.value })}
                   value={this.state.TextoCampus}
                   className="form-control form-control-sm"
-                  style={{ width: "400px" }}
+                  style={{ width: "400px",fontSize: '12px' }}
                 >
                   <option> Informe seu Campus</option>
                   <option>Baixada Santista</option>

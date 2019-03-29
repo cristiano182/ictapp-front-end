@@ -115,6 +115,7 @@ export default class Login extends Component {
             callback={this.responseFacebook}
             render={renderProps => (
               <button
+              style={{padding: '0px'}}
                 className="btn btn-lg btn-primary btn-block "
                 onClick={renderProps.onClick}
               >
@@ -126,9 +127,27 @@ export default class Login extends Component {
 
           <hr />
           <p style={{ color: "#dddd" }}>Você não tem uma conta?</p>
-          <Link className="btn btn-primary" to="/registrar">
-            Registre-se!
-          </Link>
+
+          <FacebookLogin
+              appId="331309754176413"
+              fields="name,email,picture"
+              callback={e =>  this.props.history.push({
+                pathname: "/registrar",
+                state: e
+              })}
+              render={renderProps => (
+                <button
+                style={{padding: '0px'}}
+                  className="btn btn-lg btn-primary btn-block "
+                  onClick={renderProps.onClick}
+                >
+                  <i className="fab fa-facebook-f mr-2" />
+                  <small>Registre-se com Facebook</small>
+                </button>
+              )}
+            />
+
+
         </div>
       </div>
     );
