@@ -7,7 +7,7 @@ export default class Registrar extends Component {
     super(props);
     this.state = {
       error: "",
-      curso: ""
+      curso: null
     };
   }
 
