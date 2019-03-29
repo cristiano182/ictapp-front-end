@@ -11,12 +11,13 @@ export default class Registrar extends Component {
     };
   }
 
+  componentDidMount() {}
+
   responseFacebook = async res => {
     
     const { email, name } = res;
     const userID = res.userID;
     const foto = res.picture.data.url;
-
 
     if (!this.state.curso) {
       this.setState({ error: "Por favor informe o seu curso." });
@@ -80,7 +81,7 @@ export default class Registrar extends Component {
           cursoName
         }).catch(err => console.log(err))
 
-        this.props.history.push("/login");
+        this.props.history.push("/");
       } catch (err) {
         this.setState({ error: 'Erro ao tentar registrar' + err });
       }
