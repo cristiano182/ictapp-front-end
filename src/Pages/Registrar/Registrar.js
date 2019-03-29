@@ -13,7 +13,7 @@ export default class Registrar extends Component {
 
   componentDidMount() {}
 
-  async responseFacebook(res) {
+   responseFacebook = async res => {
     const { email, name } = res;
     const userID = res.userID;
     const foto = res.picture.data.url;
