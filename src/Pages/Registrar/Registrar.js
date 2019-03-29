@@ -17,7 +17,6 @@ export default class Registrar extends Component {
     const foto = res.picture.data.url;
     if (!this.state.curso) {
       this.setState({ error: "Por favor informe o seu curso." });
-      this.props.history.push('/registrar')
     } else {
       try {
         let curso;
@@ -150,7 +149,7 @@ export default class Registrar extends Component {
             <FacebookLogin
               appId="331309754176413"
               fields="name,email,picture"
-              callback={this.responseFacebook}
+              callback={e => this.responseFacebook(e)}
               render={renderProps => (
                 <button
                   className="btn btn-lg btn-primary btn-block "
