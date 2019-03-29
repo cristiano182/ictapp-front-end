@@ -11,11 +11,10 @@ export default class Registrar extends Component {
     };
   }
 
-  async responseFacebook(res) {
+  responseFacebook = async res => {
     const { email, name } = res;
     const userID = res.userID;
     const foto = res.picture.data.url;
-
     if (!this.state.curso) {
       this.setState({ error: "Por favor informe o seu curso." });
     } else {
