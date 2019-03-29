@@ -7,7 +7,7 @@ export default class Registrar extends Component {
     super(props);
     this.state = {
       error: "",
-      curso: null
+      curso: ''
     };
   }
 
@@ -80,8 +80,9 @@ export default class Registrar extends Component {
       } catch (err) {
         this.setState({ error: "Erro ao tentar registrar" + err });
       }
+
     }
-  }
+  
   render() {
     return (
       <div>
@@ -151,7 +152,7 @@ export default class Registrar extends Component {
               appId="331309754176413"
               fields="name,email,picture"
               callback={
-                this.state.curso === null
+                !this.state.curso
                   ? this.setState({ error: "Por favor informe o seu curso." })
                   : this.responseFacebook
               }
