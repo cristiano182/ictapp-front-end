@@ -151,7 +151,7 @@ export default class Registrar extends Component {
               appId="331309754176413"
               fields="name,email,picture"
               callback={
-                !this.state.curso
+                this.state.curso === null
                   ? this.setState({ error: "Por favor informe o seu curso." })
                   : this.responseFacebook
               }
