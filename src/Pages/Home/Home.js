@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { api } from "../../services/api";
-import { verifyToken, logout } from "../../services/auth";
-import Moment from 'react-moment';
-import 'moment-timezone';
+import { verifyToken, logout, isAuthenticated } from "../../services/auth";
+import Moment from "react-moment";
+import "moment-timezone";
 import {
   Jumbotron,
   H1,
@@ -12,7 +12,7 @@ import {
   Div1,
   Label,
   Label2,
-  Label3, 
+  Label3,
   Card2,
   CardBody2,
   Card3,
@@ -30,6 +30,7 @@ export default class Home extends Component {
     this.onSubmitPost = this.onSubmitPost.bind(this);
     this.onSubmitLike = this.onSubmitLike.bind(this);
     this.onClickLoad = this.onClickLoad.bind(this);
+    this.onClickDeletePost = this.onClickDeletePost.bind(this);
     this.state = {
       newComent: "",
       newPost: "",
@@ -42,14 +43,25 @@ export default class Home extends Component {
     };
   }
   async componentDidMount() {
+    this.loadPosts();
+    if (isAuthenticated()) this.loadUser();
+  }
+
+  loadUser = async e => {
+    await api
+      .get("/users/")
+      .then(res => res.data)
+      .then(u => this.setState({ user: u }));
+  };
+  loadPosts = async e => {
     let skip = 0;
     await api
       .get("/posts/" + skip.toString())
       .then(response => response.data)
       .then(post => this.setState({ posts: post }))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
     this.setState({ skip: 0 });
-  }
+  };
 
   onClickLoad = async e => {
     await this.setState({ skip: this.state.skip + 5 });
@@ -61,26 +73,35 @@ export default class Home extends Component {
       });
   };
 
+  onClickDeletePost = async post_id => {
+    if (isAuthenticated()) {
+      await api
+        .post("/posts/delete", { post_id })
+        .catch(err => console.log(err));
+      this.loadPosts();
+    }
+  };
+
   onSubmitPost = async e => {
     e.preventDefault();
-    if ( await verifyToken()) {
+    if (await verifyToken()) {
       const obj = {
         campus: this.state.TextoCampus
           ? this.state.TextoCampus
           : "Campus não informado",
-        texto: this.state.newPost
+        texto: this.state.newPost,
+        autor: this.state.user.name
       };
-
       if (this.state.newPost !== "") {
         await api.post("/posts/", obj).catch(err => console.log(err));
-        this.componentDidMount();
+        this.loadPosts();
       }
       this.setState({
         TextoCampus: "",
         newPost: ""
       });
-    }else {
-      logout()
+    } else {
+      logout();
       this.props.history.push("/login");
     }
   };
@@ -89,38 +110,24 @@ export default class Home extends Component {
     e.preventDefault();
 
     if (await verifyToken()) {
-      await api
-        .get("/users/")
-        .then(res => res.data)
-        .then(u => this.setState({ user: u }))
-
       const obj = {
         user_id: this.state.user._id,
         comentario_id: this.state.comentario_id
       };
-
       await api
         .put("/posts/updatelike/" + this.state.post_id.toString(), obj)
         .catch(err => console.log(err));
-
-      this.componentDidMount();
-    }else {
-      logout()
+      this.loadPosts();
+    } else {
+      logout();
       this.props.history.push("/login");
     }
-
   };
 
   onSubmitComent = async e => {
     e.preventDefault();
 
     if (await verifyToken()) {
-
-      await api
-        .get("/users/")
-        .then(res => res.data)
-        .then(u =>  this.setState({ user: u }) );
-
       const obj = {
         texto: this.state.newComent,
         autor: this.state.user.name,
@@ -131,10 +138,9 @@ export default class Home extends Component {
       await api.put(url, obj).catch(b => console.log(b));
 
       this.setState({ newComent: "", post_id: "" });
-      this.componentDidMount();
-
+      this.loadPosts();
     } else {
-      logout()
+      logout();
       this.props.history.push("/login");
     }
   };
@@ -182,7 +188,7 @@ export default class Home extends Component {
                   className="form-control form-control-sm"
                   style={{ width: "400px" }}
                 >
-                  <option > Informe seu Campus</option>
+                  <option> Informe seu Campus</option>
                   <option>Baixada Santista</option>
                   <option>São José dos Campos</option>
                   <option>Osasco</option>
@@ -224,7 +230,8 @@ export default class Home extends Component {
                   <small>
                     - {post.texto} <br /> <br />
                     <span style={{ fontSize: "10px" }}>
-                      { <Moment format="HH:mm - DD/MM/YYYY">{post.date}</Moment>} - {post.campus}
+                      {<Moment format="HH:mm - DD/MM/YYYY">{post.date}</Moment>}{" "}
+                      - {post.campus}
                     </span>
                   </small>
                 </CardBody2>
@@ -288,9 +295,7 @@ export default class Home extends Component {
                               >
                                 {" "}
                                 <small>
-                                  {comentario.like.quantidade > 1
-                                    ? comentario.like.quantidade + " Curtiram"
-                                    : comentario.like.quantidade + " Curtida"}
+                                  {"Curtir " + comentario.like.quantidade}
                                 </small>
                               </button>
                             </form>
@@ -344,6 +349,22 @@ export default class Home extends Component {
                     ({post.quantidade_comentarios}) Comentarios
                   </small>
                 </Button2>
+                {this.state.user.role === 1 ? (
+                  <button
+                    className="btn btn-danger"
+                    style={{
+                      padding: "0px",
+                      width: "50px",
+                      fontSize: "10px",
+                      marginLeft: "27px"
+                    }}
+                    onClick={e => this.onClickDeletePost(post._id)}
+                  >
+                    Delete
+                  </button>
+                ) : (
+                  ""
+                )}
               </Card2>
             );
           })}

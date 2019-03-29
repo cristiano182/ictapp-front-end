@@ -10,30 +10,42 @@ import { verifyToken, logout } from "../../services/auth";
 import "react-circular-progressbar/dist/styles.css";
 import axios from "axios";
 import { urlEncodedData, config } from "../../services/configJWTGoogle";
-import styles from "./FilesList.css";
 export default class App extends Component {
-  state = {
-    uploadedFiles: [],
-    descricao: "",
-    user: [],
-    error: "",
-    pastaPublica: "1BMmVZwOAc7GVEGBGB1oxegy2O3tbNgh0",
-    pastaFileCurrent: "",
-    id_uc: "",
-    name_uc: ''
-  };
-
+  constructor(props) {
+    super(props);
+    this.onClickSendFiles = this.onClickSendFiles.bind(this);
+    this.state = {
+      uploadedFiles: [],
+      descricao: "",
+      user: [],
+      error: "",
+      pastaPublica: "1BMmVZwOAc7GVEGBGB1oxegy2O3tbNgh0",
+      pastaFileCurrent: "",
+      id_uc: "",
+      name_uc: "",
+      userSendFile: false
+    };
+  }
   async componentDidMount() {
-    if (await verifyToken()) {
-      await api
-        .get("/users/")
-        .then(res => res.data)
-        .then(u => this.setState({ user: u }))
-        .catch(err => console.log(err));
-    } else {
+    if (await verifyToken())
+     await this.loadUser();
+    else {
       logout();
       this.props.history.push("/login");
     }
+    this.setState({
+      id_uc: this.props.location.state.details,
+      name_uc: this.props.location.state.name
+    });
+    await this.getTokenDrive();
+
+    this.CreatePasteDrive();
+  }
+  async componentWillUnmount() {
+    if (this.state.uploadedFiles.length <= 0 || !this.state.userSendFile) await this.deletePaste();
+    
+  }
+  getTokenDrive = async e => {
     await axios
       .post(
         "https://www.googleapis.com/oauth2/v3/token",
@@ -42,37 +54,36 @@ export default class App extends Component {
       )
       .then(p => localStorage.setItem("accessToken", p.data.access_token))
       .catch(erro => console.log(erro));
-    this.setState({ id_uc: this.props.location.state.details,name_uc: this.props.location.state.name });
-    this.CreatePasteDrive();
-  }
-
-  async componentWillUnmount() {
-    if (this.state.uploadedFiles.length <= 0)
-      await apiGoogleDrive.delete(
-        "https://www.googleapis.com/drive/v3/files/" +
-          this.state.pastaFileCurrent
-      );
-    else if (this.state.descricao.length < 15)
-      await apiGoogleDrive.delete(
-        "https://www.googleapis.com/drive/v3/files/" +
-          this.state.pastaFileCurrent
-      );
-    else {
-      const infos = {
-        autor: this.state.user.name,
-        link: this.state.pastaFileCurrent,
-        descricao: this.state.descricao,
-        foto: this.state.user.foto
-      };
-      await api
-        .put("/files/" + this.state.id_uc, infos)
-        .catch(err => console.log(err));
-
-      await api.put("/users/updaterank/").catch(err => console.log(err));
-    }
-  }
-
-  CreatePasteDrive() {
+  };
+  loadUser = async e => {
+    await api
+      .get("/users/")
+      .then(res => res.data)
+      .then(u => this.setState({ user: u }))
+      .catch(err => console.log(err));
+  };
+  deletePaste = async e => {
+    await apiGoogleDrive.delete(
+      "https://www.googleapis.com/drive/v3/files/" + this.state.pastaFileCurrent
+    );
+    this.setState({ userSendFile: true });
+    this.props.history.push("/");
+  };
+  onClickSendFiles = async e => {
+    const infos = {
+      autor: this.state.user.name,
+      link: this.state.pastaFileCurrent,
+      descricao: this.state.descricao,
+      foto: this.state.user.foto
+    };
+    await api
+      .put("/files/" + this.state.id_uc, infos)
+      .catch(err => console.log(err));
+    await api.put("/users/updaterank/").catch(err => console.log(err));
+    this.setState({ userSendFile: true });
+    this.props.history.push("/files");
+  };
+  CreatePasteDrive = async e => {
     var metadata = {
       name: this.state.user.name,
       mimeType: "application/vnd.google-apps.folder",
@@ -84,14 +95,13 @@ export default class App extends Component {
       new Blob([JSON.stringify(metadata)], { type: "application/json" })
     );
 
-    apiGoogleDrive
+    await apiGoogleDrive
       .post("", form)
       .then(res => this.setState({ pastaFileCurrent: res.data.id }))
       .catch(err => console.log(err));
-  }
-
+  };
   onChangeDescricao = e => this.setState({ descricao: e.target.value });
-
+  
   handleUpload = async files => {
     if (this.state.descricao.length < 15) {
       this.setState({
@@ -117,7 +127,6 @@ export default class App extends Component {
       this.setState({ error: "" });
     }
   };
-
   processUpload = uploadedFile => {
     var metadata = {
       name: uploadedFile.name,
@@ -156,7 +165,6 @@ export default class App extends Component {
         this.updateFile(uploadedFile.id, { error: true });
       });
   };
-
   updateFile = (id, data) => {
     this.setState({
       uploadedFiles: this.state.uploadedFiles.map(uploadedFile => {
@@ -166,7 +174,6 @@ export default class App extends Component {
       })
     });
   };
-
   handleDelete = async id => {
     await apiGoogleDrive.delete(
       `https://www.googleapis.com/drive/v3/files/${id}`
@@ -176,7 +183,6 @@ export default class App extends Component {
       uploadedFiles: this.state.uploadedFiles.filter(file => file.id !== id)
     });
   };
-
   renderDragMessage = (isDragActive, isDragReject) => {
     if (!isDragActive)
       return (
@@ -189,7 +195,6 @@ export default class App extends Component {
 
     return <UploadMessage type="success">Solte os arquivos aqui</UploadMessage>;
   };
-  /////////////////////////////////////////////////////
   render() {
     return (
       <div
@@ -203,9 +208,12 @@ export default class App extends Component {
           padding: "0px"
         }}
       >
-        <label className="btn btn-primary" style={styles.label}>
+        <label
+          className="btn-primary"
+          style={{ padding: "2px", color: "#ddd", borderRadius: "10px" }}
+        >
           <strong style={{ padding: "2px", color: "#ddd" }}>
-          {this.state.name_uc}
+            {this.state.name_uc}
           </strong>
         </label>
         <br />
@@ -286,12 +294,21 @@ export default class App extends Component {
             ))}
             <br />
             <button
-              onClick={e => this.props.history.push("/files")}
+              onClick={e => this.deletePaste()}
+              type="button"
+              className="btn btn-danger"
+              style={{ height: "30px", padding: "0px" }}
+            >
+              Cancelar
+            </button>
+            {"  "}
+            <button
+              onClick={e => this.onClickSendFiles()}
               type="button"
               className="btn btn-success"
-              style={{ height: "30px", paddingTop: "1px" }}
+              style={{ height: "30px", padding: "0px" }}
             >
-              Finalizar Envio
+              Enviar
             </button>
           </Container>
         )}

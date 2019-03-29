@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { api,apiGoogleDrive } from "../../services/api";
+import { api, apiGoogleDrive } from "../../services/api";
 import { isAuthenticated } from "../../services/auth";
 import styles from "./FilesList.css";
 
@@ -93,83 +93,100 @@ export default class FilesList extends Component {
               <label
                 className="btn-primary"
                 style={{ padding: "2px", color: "#ddd", borderRadius: "10px" }}
-                onClick={e => this.onClick(arquivo._id, arquivo.name)}
+                data-toggle="collapse"
+                data-target={"#" + arquivo._id}
+                aria-controls="collapseExample"
+                data-whatever="@getbootstrap"
+                aria-expanded="false"
               >
                 <strong>{arquivo.name}</strong>
               </label>
-              <div className="row " style={styles.row}>
-                {arquivo.info.map(infos => {
-                  return (
-                    <div
-                      key={infos._id}
-                      className="card text-white"
-                      style={styles.card}
-                    >
+              <div
+                className="collapse"
+                style={{ width: "100%" }}
+                id={arquivo._id}
+              >
+                <div className="row " style={styles.row}>
+                  {arquivo.info.map(infos => {
+                    return (
                       <div
-                        className="card-header"
-                        style={{
-                          color: "#FF7F50",
-                          fontSize: "13px",
-                          padding: "0px"
-                        }}
+                        key={infos._id}
+                        className="card text-white"
+                        style={styles.card}
                       >
-                        <a
-                          className="nav-link"
-                          style={{ color: "orange" }}
-                          href={
-                            "https://drive.google.com/drive/folders/" +
-                            infos.link
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <div
+                          className="card-header"
+                          style={{
+                            color: "#FF7F50",
+                            fontSize: "13px",
+                            padding: "0px"
+                          }}
                         >
-                          {" "}
-                          Ver Arquivo{" "}
-                        </a>
-                      </div>
-                      <div className="card-body " style={{ padding: "0px" }}>
-                        {infos.descricao} <br />
-                        <small style={{ fontSize: "10px" }}>
-                          {" "}
-                          Adicionado Por: {infos.autor}{" "}
-                          <img
-                            src={
-                              infos.foto
-                                ? infos.foto
-                                : "https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg"
+                          <a
+                            className="nav-link"
+                            style={{ color: "orange" }}
+                            href={
+                              "https://drive.google.com/drive/folders/" +
+                              infos.link
                             }
-                            className="mr-3"
-                            alt="..."
-                            style={{
-                              width: "20px",
-                              height: "20px",
-                              borderRadius: "200px",
-                              padding: "0px"
-                            }}
-                          />
-                          {this.state.user.role === 1 ? (
-                            <button
-                              className="btn btn-danger"
-                              style={{ padding: "0px" }}
-                              onClick={e =>
-                                this.onClickDelete(
-                                  arquivo._id,
-                                  infos._id,
-                                  infos.link
-                                )
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {" "}
+                            Ver Arquivo{" "}
+                          </a>
+                        </div>
+                        <div className="card-body " style={{ padding: "0px" }}>
+                          {infos.descricao} <br />
+                          <small style={{ fontSize: "10px" }}>
+                            {" "}
+                            Adicionado Por: {infos.autor}{" "}
+                            <img
+                              src={
+                                infos.foto
+                                  ? infos.foto
+                                  : "https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg"
                               }
-                            >
-                              {" "}
-                              Delete
-                            </button>
-                          ) : (
-                            ""
-                          )}
-                        </small>
+                              className="mr-3"
+                              alt="..."
+                              style={{
+                                width: "20px",
+                                height: "20px",
+                                borderRadius: "200px",
+                                padding: "0px"
+                              }}
+                            />
+                            {this.state.user.role === 1 ? (
+                              <button
+                                className="btn btn-danger"
+                                style={{ padding: "0px", fontSize: "10px" }}
+                                onClick={e =>
+                                  this.onClickDelete(
+                                    arquivo._id,
+                                    infos._id,
+                                    infos.link
+                                  )
+                                }
+                              >
+                                {" "}
+                                Delete
+                              </button>
+                            ) : (
+                              ""
+                            )}
+                          </small>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
+                <button
+                  onClick={e => this.onClick(arquivo._id, arquivo.name)}
+                  className="btn-success"
+                  style={{ padding: "0px", borderRadius: "10px", marginTop: '5px' }}
+                >
+                  Adicionar novo arquivo &nbsp;
+                </button>
               </div>
             </div>
           );

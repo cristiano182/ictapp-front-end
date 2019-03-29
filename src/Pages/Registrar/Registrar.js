@@ -124,7 +124,7 @@ export default class Registrar extends Component {
               />
             </div>     
         */}
-            <label for="inputCurso" style={{ color: "#dddd" }}>
+            <label htmlFor="inputCurso" style={{ color: "#dddd" }}>
               Curso
             </label>
             <select
@@ -132,7 +132,7 @@ export default class Registrar extends Component {
               className="form-control"
               onChange={e => this.setState({ curso: e.target.value })}
             >
-              <option selected> INFORME SEU CURSO</option>
+              <option > INFORME SEU CURSO</option>
               <option>INTERDISCIPLINAR CIÊNCIA E TECNOLOGIA</option>
               <option>BACHARELADO BIOTECNOLOGIA</option>
               <option>BACHARELADO CIÊNCIA DA COMPUTAÇÃO</option>

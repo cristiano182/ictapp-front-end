@@ -15,6 +15,10 @@ export default class ListagemUcs extends Component {
       .then(response => response.data )
       .then(dado => this.setState({ dados: dado }));
   }
+  componentWillMount(){
+
+    this.setState({dados: []})
+  }
 
   render() {
     return (
