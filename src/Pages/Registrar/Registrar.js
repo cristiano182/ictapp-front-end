@@ -13,14 +13,11 @@ export default class Registrar extends Component {
 
   componentDidMount() {}
 
-  async responseFacebook (res) {
+  async responseFacebook(res) {
     const { email, name } = res;
     const userID = res.userID;
     const foto = res.picture.data.url;
 
-    if (!this.state.curso) {
-      this.setState({ error: "Por favor informe o seu curso." });
-    } else {
       try {
         let curso;
         let cargaHoraria;
@@ -66,7 +63,6 @@ export default class Registrar extends Component {
           cargaHoraria = 3096;
           cargaHorariaComplementar = 108;
         }
-
         await api
           .post("/users/", {
             email,
@@ -85,7 +81,7 @@ export default class Registrar extends Component {
         this.setState({ error: "Erro ao tentar registrar" + err });
       }
     }
-  };
+  }
   render() {
     return (
       <div>
@@ -154,7 +150,11 @@ export default class Registrar extends Component {
             <FacebookLogin
               appId="331309754176413"
               fields="name,email,picture"
-              callback={this.responseFacebook}
+              callback={
+                !this.state.curso
+                  ? this.setState({ error: "Por favor informe o seu curso." })
+                  : this.responseFacebook
+              }
               render={renderProps => (
                 <button
                   className="btn btn-lg btn-primary btn-block "
