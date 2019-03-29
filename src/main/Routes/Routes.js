@@ -23,7 +23,7 @@ export default class Routes extends Component {
           <Route path="/registrar" component={ isAuthenticated() ?  Home : Registrar}/>     
           <Route path="/listagemucs" component={ListagemUcs} /> 
           <Route exact path="/files" component={Files} />
-          <Route component={Home} />
+          <Route component={Registrar} />
         </Switch>
       </main>
     );
