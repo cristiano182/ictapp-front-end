@@ -13,8 +13,7 @@ export default class Registrar extends Component {
 
   componentDidMount() {}
 
-  responseFacebook = async res => {
-    
+  async responseFacebook (res) {
     const { email, name } = res;
     const userID = res.userID;
     const foto = res.picture.data.url;
@@ -30,60 +29,60 @@ export default class Registrar extends Component {
         if (this.state.curso === "ENGENHARIA BIOMEDICA") {
           curso = "required_EB";
           cargaHoraria = 2628;
-          cursoName =  "Engenharia Biomedica";
+          cursoName = "Engenharia Biomedica";
           cargaHorariaComplementar = 108;
-        }
-        if (this.state.curso === "INTERDISCIPLINAR CIÊNCIA E TECNOLOGIA") {
+        } else if (
+          this.state.curso === "INTERDISCIPLINAR CIÊNCIA E TECNOLOGIA"
+        ) {
           curso = "required_BCT";
           cargaHoraria = 468;
-          cursoName =  "Interdisciplinar Ciência e Tecnologia";
+          cursoName = "Interdisciplinar Ciência e Tecnologia";
           cargaHorariaComplementar = 420;
-        }
-        if (this.state.curso === "BACHARELADO BIOTECNOLOGIA") {
+        } else if (this.state.curso === "BACHARELADO BIOTECNOLOGIA") {
           curso = "required_BBT";
-          cursoName =  "Bacharelado Biotecnologia";
+          cursoName = "Bacharelado Biotecnologia";
           cargaHoraria = 2196;
           cargaHorariaComplementar = 108;
-        }
-        if (this.state.curso === "BACHARELADO CIÊNCIA DA COMPUTAÇÃO") {
+        } else if (this.state.curso === "BACHARELADO CIÊNCIA DA COMPUTAÇÃO") {
           curso = "required_BCC";
-          cursoName =  "Bacharelado Ciência da Computação";
+          cursoName = "Bacharelado Ciência da Computação";
           cargaHoraria = 2196;
           cargaHorariaComplementar = 144;
-        }
-        if (this.state.curso === "BACHARELADO MATEMATICA COMPUTACIONAL") {
+        } else if (
+          this.state.curso === "BACHARELADO MATEMATICA COMPUTACIONAL"
+        ) {
           curso = "required_BMC";
-          cursoName =  "Bacharelado Matematica Computacional";
-          cargaHoraria = 2196
+          cursoName = "Bacharelado Matematica Computacional";
+          cargaHoraria = 2196;
           cargaHorariaComplementar = 72;
-        }
-        if (this.state.curso === "ENGENHARIA DE MATERIAIS") {
+        } else if (this.state.curso === "ENGENHARIA DE MATERIAIS") {
           curso = "required_EM";
-          cursoName =  "Engenharia de Materiais";
+          cursoName = "Engenharia de Materiais";
           cargaHoraria = 3204;
           cargaHorariaComplementar = 108;
-        }
-        if (this.state.curso === "ENGENHARIA DA COMPUTAÇÃO") {
+        } else if (this.state.curso === "ENGENHARIA DA COMPUTAÇÃO") {
           curso = "required_EC";
-          cursoName =  "Engenharia de Computação";
+          cursoName = "Engenharia de Computação";
           cargaHoraria = 3096;
           cargaHorariaComplementar = 108;
         }
 
-        await api.post("/users/", {
-          email,
-          name,
-          userID,
-          foto,
-          curso,
-          cargaHoraria,
-          cargaHorariaComplementar,
-          cursoName
-        }).catch(err => console.log(err))
+        await api
+          .post("/users/", {
+            email,
+            name,
+            userID,
+            foto,
+            curso,
+            cargaHoraria,
+            cargaHorariaComplementar,
+            cursoName
+          })
+          .catch(err => console.log(err));
 
-        this.props.history.push("/");
+        await this.props.history.push("/");
       } catch (err) {
-        this.setState({ error: 'Erro ao tentar registrar' + err });
+        this.setState({ error: "Erro ao tentar registrar" + err });
       }
     }
   };
@@ -133,7 +132,7 @@ export default class Registrar extends Component {
               className="form-control"
               onChange={e => this.setState({ curso: e.target.value })}
             >
-              <option > INFORME SEU CURSO</option>
+              <option> INFORME SEU CURSO</option>
               <option>INTERDISCIPLINAR CIÊNCIA E TECNOLOGIA</option>
               <option>BACHARELADO BIOTECNOLOGIA</option>
               <option>BACHARELADO CIÊNCIA DA COMPUTAÇÃO</option>
