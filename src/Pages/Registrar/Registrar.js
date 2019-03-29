@@ -11,9 +11,9 @@ export default class Registrar extends Component {
     };
   }
 
-  componentDidMount() {}
+  
 
-  async responseFacebook (res) {
+async  responseFacebook (res) {
     
     const { email, name } = res;
     const userID = res.userID;
