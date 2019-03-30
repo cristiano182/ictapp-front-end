@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, browserHistory } from "react-router-dom";
+import { Link, browserHistory} from "react-router-dom";
 import { login } from "../../services/auth";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { api } from "../../services/api";
@@ -11,18 +11,14 @@ export default class Login extends Component {
       error: ""
     };
   }
-  componentDidMount() {
+  componentDidMount() {}
 
-
-    alert(this.props.location.state)
-  }
-
-  responseFacebook = async res => {
-    this.props.history.replace("/login");
+  responseFacebook = res => {
     const { userID } = res;
     if (userID) {
       try {
-        const user = await api.post("/users/login/", { userID });
+        const user =  api.post("/users/login/", { userID });
+        alert('ola')
         if (!user.data) {
           this.setState({
             error: "Usuario nao cadastrado, Por favor Registre-se"
@@ -48,11 +44,7 @@ export default class Login extends Component {
     return (
       <div>
         {this.state.error && (
-          <div
-            style={{ padding: "0px" }}
-            className="alert alert-danger"
-            role="alert"
-          >
+          <div style={{padding: '0px'}} className="alert alert-danger" role="alert">
             {" "}
             {this.state.error}{" "}
           </div>
@@ -121,19 +113,14 @@ export default class Login extends Component {
           <FacebookLogin
             appId="331309754176413"
             fields="name,email,picture"
-            callback={e =>
-              this.props.history.push({
-                pathname: "/login",
-                state: e
-              })
-            }
-            responseType={"none"}
+            callback={e => this.responseFacebook(e)}
+            responseType={'none'}
             state={null}
             isMobile
             //redirectUri={window.location.href ('https://ictapp.net')}
             render={renderProps => (
               <button
-                style={{ padding: "0px" }}
+              style={{padding: '0px'}}
                 className="btn btn-lg btn-primary btn-block "
                 onClick={renderProps.onClick}
               >
@@ -144,33 +131,31 @@ export default class Login extends Component {
           />
 
           <hr />
-          <p style={{ color: "#dddd", fontSize: "10px" }}>
-            Você não tem uma conta?
-          </p>
+          <p style={{ color: "#dddd" , fontSize: '10px'}}>Você não tem uma conta?</p>
 
           <FacebookLogin
-            responseType={"none"}
+            responseType={'none'}
             state={null}
-            appId="331309754176413"
-            isMobile
-            fields="name,email,picture"
-            callback={e =>
-              this.props.history.push({
+              appId="331309754176413"
+              isMobile
+              fields="name,email,picture"
+              callback={e =>  this.props.history.push({
                 pathname: "/registrar",
                 state: e
-              })
-            }
-            render={renderProps => (
-              <button
-                style={{ padding: "0px" }}
-                className="btn btn-lg btn-primary btn-block "
-                onClick={renderProps.onClick}
-              >
-                <i className="fab fa-facebook-f mr-2" />
-                <small>Registre-se com Facebook</small>
-              </button>
-            )}
-          />
+              })}
+              render={renderProps => (
+                <button
+                style={{padding: '0px'}}
+                  className="btn btn-lg btn-primary btn-block "
+                  onClick={renderProps.onClick}
+                >
+                  <i className="fab fa-facebook-f mr-2" />
+                  <small>Registre-se com Facebook</small>
+                </button>
+              )}
+            />
+
+
         </div>
       </div>
     );
