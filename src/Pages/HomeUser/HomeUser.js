@@ -37,7 +37,7 @@ export default class HomeUser extends Component {
 
     if (this.state.user.userID)
       await api.put("/users/updatedata/", obj).catch(erro => console.log(erro));
-    this.setState({ dados: [] });
+    
   }
 
   async componentDidMount() {
