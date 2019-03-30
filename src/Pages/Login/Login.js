@@ -14,7 +14,7 @@ export default class Login extends Component {
   componentDidMount() {}
 
   responseFacebook = async res => {
-    window.location.href = '/login';
+    this.props.history.push("/login");
     const { userID } = res;
     if (userID) {
       try {
