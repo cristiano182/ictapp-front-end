@@ -88,7 +88,7 @@ export default class Registrar extends Component {
     return (
       <div>
         {this.state.error && (
-          <div className="alert alert-danger" role="alert">
+          <div style={{padding: '0px', fontSize: '12px'}} className="alert alert-danger" role="alert">
             {" "}
             {this.state.error}{" "}
           </div>

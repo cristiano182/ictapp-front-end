@@ -125,7 +125,7 @@ export default class HomeUser extends Component {
         <Card>
           {this.state.msgRemove && (
             <div
-              style={{ fontSize: "12px" }}
+              style={{ fontSize: "12px", padding: '0px' }}
               className="alert alert-danger"
               role="alert"
             >
@@ -135,7 +135,7 @@ export default class HomeUser extends Component {
           )}
           {this.state.msgAdd && (
             <div
-              style={{ fontSize: "12px" }}
+              style={{ fontSize: "12px", padding: '0px' }}
               className="alert alert-success"
               role="alert"
             >

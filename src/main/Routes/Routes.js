@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { isAuthenticated } from "../../services/auth";
-
 import Home from "../../Pages/Home/Home";
 import Registrar from "../../Pages/Registrar/Registrar";
 import Login from "../../Pages/Login/Login";

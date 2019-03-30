@@ -43,7 +43,7 @@ export default class Login extends Component {
     return (
       <div>
         {this.state.error && (
-          <div className="alert alert-danger" role="alert">
+          <div style={{padding: '0px'}} className="alert alert-danger" role="alert">
             {" "}
             {this.state.error}{" "}
           </div>
@@ -126,7 +126,7 @@ export default class Login extends Component {
           />
 
           <hr />
-          <p style={{ color: "#dddd" }}>Você não tem uma conta?</p>
+          <p style={{ color: "#dddd" , fontSize: '10px'}}>Você não tem uma conta?</p>
 
           <FacebookLogin
               appId="331309754176413"
