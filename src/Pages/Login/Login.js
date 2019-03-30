@@ -135,6 +135,7 @@ export default class Login extends Component {
             responseType={'none'}
             state={null}
               appId="331309754176413"
+              isMobile
               fields="name,email,picture"
               callback={e =>  this.props.history.push({
                 pathname: "/registrar",
