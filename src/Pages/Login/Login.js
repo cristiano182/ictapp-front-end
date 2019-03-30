@@ -14,8 +14,9 @@ export default class Login extends Component {
   componentDidMount() {}
 
   responseFacebook = async res => {
-    const { userID } = res;
     alert(JSON.stringify(res))
+    const { userID } = res;
+   
     if (userID) {
       try {
         const user = await api.post("/users/login/", { userID });
