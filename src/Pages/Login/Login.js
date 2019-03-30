@@ -13,13 +13,12 @@ export default class Login extends Component {
   }
   componentDidMount() {}
 
-  responseFacebook = res => {
+  responseFacebook = async res => {
     const { userID } = res;
     alert(JSON.stringify(res))
     if (userID) {
       try {
-        const user =  api.post("/users/login/", { userID });
-        alert('ola')
+        const user = await api.post("/users/login/", { userID });
         if (!user.data) {
           this.setState({
             error: "Usuario nao cadastrado, Por favor Registre-se"
