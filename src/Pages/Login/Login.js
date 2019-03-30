@@ -112,7 +112,7 @@ export default class Login extends Component {
           <FacebookLogin
             appId="331309754176413"
             fields="name,email,picture"
-            callback={this.responseFacebook}
+            callback={e => this.responseFacebook(e)}
             responseType={'none'}
             state={null}
             //redirectUri={window.location.href ('https://ictapp.net')}
