@@ -43,7 +43,6 @@ export default class Home extends Component {
     };
   }
   async componentDidMount() {
-    alert('ola')
     this.loadPosts();
     if (isAuthenticated()) this.loadUser();
   }

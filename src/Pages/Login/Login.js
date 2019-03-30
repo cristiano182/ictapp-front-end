@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link} from "react-router-dom";
+import { Link, browserHistory} from "react-router-dom";
 import { login } from "../../services/auth";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { api } from "../../services/api";
@@ -14,7 +14,8 @@ export default class Login extends Component {
   componentDidMount() {}
 
   responseFacebook = async res => {
-    alert('ola')
+    this.props.history.replaceState('/login')
+
     const { userID } = res;
     if (userID) {
       try {
