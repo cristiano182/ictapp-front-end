@@ -15,7 +15,6 @@ export default class Login extends Component {
 
   responseFacebook = async res => {
     const { userID } = res;
-    alert(JSON.stringify(res))
     if (userID) {
       try {
         const user = await api.post("/users/login/", { userID });
@@ -114,9 +113,9 @@ export default class Login extends Component {
             appId="331309754176413"
             fields="name,email,picture"
             callback={e => this.responseFacebook(e)}
-            responseType={'none'}
-            state={null}
-            isMobile
+           // responseType={'none'}
+           // state={null}
+           // isMobile
             //redirectUri={window.location.href ('https://ictapp.net')}
             render={renderProps => (
               <button
@@ -134,10 +133,10 @@ export default class Login extends Component {
           <p style={{ color: "#dddd" , fontSize: '10px'}}>Você não tem uma conta?</p>
 
           <FacebookLogin
-            responseType={'none'}
-            state={null}
+           // responseType={'none'}
+           // state={null}
               appId="331309754176413"
-              isMobile
+             // isMobile
               fields="name,email,picture"
               callback={e =>  this.props.history.push({
                 pathname: "/registrar",
