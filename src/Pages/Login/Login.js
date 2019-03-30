@@ -15,6 +15,7 @@ export default class Login extends Component {
 
   responseFacebook = res => {
     const { userID } = res;
+    alert(JSON.stringify(res))
     if (userID) {
       try {
         const user =  api.post("/users/login/", { userID });
