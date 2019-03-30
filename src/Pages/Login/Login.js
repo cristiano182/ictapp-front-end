@@ -14,6 +14,7 @@ export default class Login extends Component {
   componentDidMount() {}
 
   responseFacebook = async res => {
+    alert('ola')
     const { userID } = res;
     if (userID) {
       try {
