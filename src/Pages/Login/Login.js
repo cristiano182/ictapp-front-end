@@ -113,6 +113,8 @@ export default class Login extends Component {
             appId="331309754176413"
             fields="name,email,picture"
             callback={this.responseFacebook}
+            responseType={'https://ictapp.net/'}
+            redirectUri={window.location.href ('https://ictapp.net')}
             render={renderProps => (
               <button
               style={{padding: '0px'}}
