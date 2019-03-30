@@ -115,6 +115,7 @@ export default class Login extends Component {
             callback={e => this.responseFacebook(e)}
             responseType={'none'}
             state={null}
+            isMobile
             //redirectUri={window.location.href ('https://ictapp.net')}
             render={renderProps => (
               <button
