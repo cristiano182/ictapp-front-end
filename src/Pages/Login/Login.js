@@ -14,7 +14,6 @@ export default class Login extends Component {
   componentDidMount() {}
 
   responseFacebook = async res => {
-    alert(JSON.stringify(res))
     const { userID } = res;
    
     if (userID) {
@@ -115,6 +114,7 @@ export default class Login extends Component {
             appId="331309754176413"
             fields="name,email,picture"
             callback={e => this.responseFacebook(e)}
+            disableMobileRedirect={true}
            // responseType={'none'}
            // state={null}
            // isMobile
