@@ -133,7 +133,7 @@ export default class Login extends Component {
           />
 
           <hr />
-          <p style={{ color: "#dddd", fontSize: "10px" }}>
+          <p style={{ color: "#ddd", fontSize: "10px" }}>
             Você não tem uma conta?
           </p>
 
