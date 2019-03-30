@@ -72,7 +72,7 @@ export default class Registrar extends Component {
             name: this.state.user.name,
             userID: this.state.user.userID,
             foto: this.state.user.picture.data.url,
-            curso: this.state.curso,
+            curso: curso,
             cargaHoraria,
             cargaHorariaComplementar,
             cursoName
