@@ -17,6 +17,19 @@ export default class FilesList extends Component {
     };
   }
   async componentDidMount() {
+    this.loadFiles();
+
+    if (isAuthenticated()) this.loadUser();
+  }
+
+  loadUser = async e => {
+    await api
+      .get("/users/")
+      .then(res => res.data)
+      .then(u => this.setState({ user: u }))
+      .catch(err => console.log(err + "erro ao carregar usuario"));
+  };
+  loadFiles = async e => {
     let skip = 0;
     await api
       .get("/files/" + skip.toString())
@@ -24,15 +37,7 @@ export default class FilesList extends Component {
       .then(files => this.setState({ arquivos: files }))
       .catch(err => console.log(err));
     this.setState({ skip: 0 });
-
-    if (isAuthenticated()) {
-      await api
-        .get("/users/")
-        .then(res => res.data)
-        .then(u => this.setState({ user: u }))
-        .catch(err => console.log(err + "erro ao carregar usuario"));
-    }
-  }
+  };
 
   onClickLoad = async e => {
     await this.setState({ skip: this.state.skip + 20 });
@@ -56,7 +61,7 @@ export default class FilesList extends Component {
         "https://www.googleapis.com/drive/v3/files/" + info_link
       );
 
-      this.componentDidMount();
+      this.loadFiles();
     }
   }
 
@@ -183,7 +188,11 @@ export default class FilesList extends Component {
                 <button
                   onClick={e => this.onClick(arquivo._id, arquivo.name)}
                   className="btn-success"
-                  style={{ padding: "0px", borderRadius: "10px", marginTop: '5px' }}
+                  style={{
+                    padding: "0px",
+                    borderRadius: "10px",
+                    marginTop: "5px"
+                  }}
                 >
                   Adicionar novo arquivo &nbsp;
                 </button>
