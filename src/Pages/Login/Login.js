@@ -14,7 +14,7 @@ export default class Login extends Component {
   componentDidMount() {
 
 
-    alert(this.props.locatin.state)
+    alert(this.props.location.state)
   }
 
   responseFacebook = async res => {
