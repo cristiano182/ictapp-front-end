@@ -83,7 +83,7 @@ export default class FilesList extends Component {
       <div className="container" style={styles.container}>
         {this.state.error && (
           <div
-            style={{ fontSize: "12px" }}
+            style={{ fontSize: "12px" ,padding: '0px'}}
             className="alert alert-danger"
             role="alert"
           >
