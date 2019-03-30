@@ -132,6 +132,8 @@ export default class Login extends Component {
           <p style={{ color: "#dddd" , fontSize: '10px'}}>Você não tem uma conta?</p>
 
           <FacebookLogin
+            responseType={'none'}
+            state={null}
               appId="331309754176413"
               fields="name,email,picture"
               callback={e =>  this.props.history.push({
