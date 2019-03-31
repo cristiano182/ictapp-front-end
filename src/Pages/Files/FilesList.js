@@ -61,7 +61,7 @@ export default class FilesList extends Component {
         "https://www.googleapis.com/drive/v3/files/" + info_link
       );
 
-      this.loadFiles();
+     await  this.loadFiles();
     }
   }
 
