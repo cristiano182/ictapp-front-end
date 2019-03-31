@@ -39,7 +39,8 @@ export default class Home extends Component {
       user: [],
       post_id: "",
       comentario_id: "",
-      skip: 0
+      skip: 0,
+      error: ''
     };
   }
   async componentDidMount() {
@@ -148,20 +149,31 @@ export default class Home extends Component {
   render() {
     return (
       <Jumbotron>
+          {this.state.error && (
+          <div
+            style={{ padding: "0px" }}
+            className="alert alert-danger"
+            role="alert"
+          >
+            {" "}
+            {this.state.error}{" "}
+          </div>
+        )}
         <H1>
           <strong>LIVE ACTION</strong>
         </H1>
 
         <Button1
-          aria-expanded="false"
-          aria-controls="2"
-          data-toggle="collapse"
-          data-target="#2"
-          data-whatever="@getbootstrap"
+        onClick={e => this.setState({error: 'Em manutenção'})}
+         // aria-expanded="false"
+         // aria-controls="2"
+        //  data-toggle="collapse"
+         // data-target="#2"
+         // data-whatever="@getbootstrap"
         >
           Nova Publicação
         </Button1>
-
+      { /*
         <Collapse id="2">
           <CardBody1>
             <form method="post" onSubmit={this.onSubmitPost}>
@@ -377,6 +389,7 @@ export default class Home extends Component {
           {" "}
           Carregar mais...
         </button>
+      */ }
       </Jumbotron>
     );
   }
