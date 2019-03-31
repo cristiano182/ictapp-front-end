@@ -44,8 +44,8 @@ export default class Home extends Component {
     };
   }
   async componentDidMount() {
-    this.loadPosts();
-    if (isAuthenticated()) this.loadUser();
+   // this.loadPosts();
+   // if (isAuthenticated()) this.loadUser();
   }
 
   loadUser = async e => {
