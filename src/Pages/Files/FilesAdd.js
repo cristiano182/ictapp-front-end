@@ -127,7 +127,7 @@ export default class App extends Component {
       this.setState({ error: "" });
     }
   };
-  processUpload = uploadedFile => {
+  processUpload = async uploadedFile => {
     var metadata = {
       name: uploadedFile.name,
       mimeType: uploadedFile.type,
@@ -148,7 +148,7 @@ export default class App extends Component {
       uploadedFile.name
     );
 
-    apiGoogleDrive
+   await apiGoogleDrive
       .post("", data, {
         onUploadProgress: e => {
           const progress = parseInt(Math.round((e.loaded * 100) / e.total));
