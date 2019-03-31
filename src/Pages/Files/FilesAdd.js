@@ -267,7 +267,7 @@ export default class App extends Component {
                         <button
                           onClick={() => this.handleDelete(uploadedFile.id)}
                         >
-                          Excluir (Envie novamente)
+                          Excluir (Carrege o arquivo novamente)
                         </button>
                       )}
                     </span>
