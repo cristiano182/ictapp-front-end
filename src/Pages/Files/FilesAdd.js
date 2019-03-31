@@ -175,9 +175,9 @@ export default class App extends Component {
     });
   };
   handleDelete = async id => {
-    await apiGoogleDrive.delete(
-      `https://www.googleapis.com/drive/v3/files/${id}`
-    );
+   // await apiGoogleDrive.delete(
+    //  `https://www.googleapis.com/drive/v3/files/${id}`
+   // );
 
     this.setState({
       uploadedFiles: this.state.uploadedFiles.filter(file => file.id !== id)
@@ -263,11 +263,11 @@ export default class App extends Component {
                     <span>
                       <strong>{uploadedFile.file.name}&nbsp;&nbsp;</strong>
                       {uploadedFile.readableSize} &nbsp;&nbsp;
-                      {uploadedFile.uploaded && (
+                      {!uploadedFile.uploaded && (
                         <button
                           onClick={() => this.handleDelete(uploadedFile.id)}
                         >
-                          Excluir
+                          Excluir (Envie novamente)
                         </button>
                       )}
                     </span>
