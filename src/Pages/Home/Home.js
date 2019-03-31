@@ -164,7 +164,7 @@ export default class Home extends Component {
         </H1>
 
         <Button1
-        onClick={e => this.setState({error: 'Em manutenção'})}
+        onClick={e => this.setState({error: 'Desabilitado'})}
          // aria-expanded="false"
          // aria-controls="2"
         //  data-toggle="collapse"
