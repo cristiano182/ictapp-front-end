@@ -152,7 +152,7 @@ export default class Home extends Component {
           {this.state.error && (
           <div
             style={{ padding: "0px" }}
-            className="alert alert-danger"
+            className="alert alert-success"
             role="alert"
           >
             {" "}
@@ -164,7 +164,7 @@ export default class Home extends Component {
         </H1>
 
         <Button1
-        onClick={e => this.setState({error: 'Desabilitado'})}
+       // onClick={e => this.setState({error: 'Desabilitado'})}
          // aria-expanded="false"
          // aria-controls="2"
         //  data-toggle="collapse"
