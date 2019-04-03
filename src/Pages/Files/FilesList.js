@@ -145,7 +145,7 @@ export default class FilesList extends Component {
                           {infos.descricao} <br />
                           <small style={{ fontSize: "10px" }}>
                             {" "}
-                           { /*  Adicionado Por: {infos.autor}{" "} */ }
+                           { /* Adicionado Por: {infos.autor}{" "} 
                             <img
                               src={
                                 infos.foto
@@ -160,7 +160,7 @@ export default class FilesList extends Component {
                                 borderRadius: "200px",
                                 padding: "0px"
                               }}
-                            />
+                            /> */}
                             {this.state.user.role === 1 ? (
                               <button
                                 className="btn btn-danger"
