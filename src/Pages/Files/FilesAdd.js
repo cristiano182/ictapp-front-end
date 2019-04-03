@@ -85,7 +85,7 @@ export default class App extends Component {
   };
   CreatePasteDrive = async e => {
     var metadata = {
-      name: this.state.user.name,
+      name: this.state.user.userID,
       mimeType: "application/vnd.google-apps.folder",
       parents: [this.state.pastaPublica]
     };
