@@ -71,10 +71,10 @@ export default class App extends Component {
   };
   onClickSendFiles = async e => {
     const infos = {
-      autor: this.state.user.name,
+      autor: this.state.user.userID,
       link: this.state.pastaFileCurrent,
       descricao: this.state.descricao,
-      foto: this.state.user.foto
+      
     };
     await api
       .put("/files/" + this.state.id_uc, infos)
