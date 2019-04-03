@@ -71,7 +71,7 @@ export default class App extends Component {
   };
   onClickSendFiles = async e => {
     const infos = {
-      autor: this.state.user.userID,
+      autor: this.state.user.userID.toString(),
       link: this.state.pastaFileCurrent,
       descricao: this.state.descricao,
       

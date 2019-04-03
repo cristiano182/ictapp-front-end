@@ -145,22 +145,7 @@ export default class FilesList extends Component {
                           {infos.descricao} <br />
                           <small style={{ fontSize: "10px" }}>
                             {" "}
-                           { /* Adicionado Por: {infos.autor}{" "} 
-                            <img
-                              src={
-                                infos.foto
-                                  ? infos.foto
-                                  : "https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg"
-                              }
-                              className="mr-3"
-                              alt="..."
-                              style={{
-                                width: "20px",
-                                height: "20px",
-                                borderRadius: "200px",
-                                padding: "0px"
-                              }}
-                            /> */}
+                           
                             {this.state.user.role === 1 ? (
                               <button
                                 className="btn btn-danger"
