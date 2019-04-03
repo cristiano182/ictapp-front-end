@@ -149,7 +149,7 @@ export default class ListagemUcs extends Component {
                   target="_blank"
                   without rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ marginBottom: "4px" }}
+                  style={{ marginBottom: "4px",padding: '0px' }}
                 >
                   Consultar Ementa
                 </a>
