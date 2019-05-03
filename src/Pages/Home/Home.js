@@ -17,10 +17,10 @@ export default class Home extends Component {
                 <div style={{ margin: '0px', color: '#ddd', padding: '0px', paddingTop: "100px", height: '600px', display: 'flex', justifyContent: 'space-around', border: 'transparent', background: 'transparent' }}>
                     <div style={{ textAlign: 'start' }} >  <span style={{ fontSize: "25px" }} > Informações sobre disciplinas </span> <br /> Consulte ementa, carga-horária, pré-requisitos <br /> e outras informações  sobre disciplinas centradas em um só lugar.
                         < br />
-                        <Link className="btn btn-primary" to="/listagemucs"> Consultar</Link>
+                        <Link  style={{background: 'indigo', color: '#ddd', fontSize: '13px'}} className="btn" to="/listagemucs"> Consultar</Link>
                         <br /> <br />
                         <span style={{ fontSize: "25px" }} > Compartilhe e consulte arquivos </span> <br />Contribua realizando upload de arquivos no google drive, sem limites e free.<br />
-                        <Link className="btn btn-primary" to="files"> Contribuir</Link>
+                        <Link  style={{background: 'indigo',  color: '#ddd', fontSize: '13px' }} className="btn" to="files"> Contribuir</Link>
                     </div>
 
                     <div style={{

@@ -17,12 +17,12 @@ export default class App extends Component {
 
         <Link 
         style={{
-          marginLeft: '100px',
+          marginLeft: '25px',
           backgroundImage: 'url(' + ictapp + ')',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-           width: '50px', height: '50px'}} to="/"> </Link>
+           width: '60px', height: '60px'}} to="/"> </Link>
     {  /* <Navbar.Brand href="/" style={{ marginLeft: '100px' }}>React-Bootstrap</Navbar.Brand> */ }
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
