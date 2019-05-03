@@ -121,7 +121,7 @@ export default class HomeUser extends Component {
 
   render() {
     return (
-      <Container style={{display:'flex', justifyContent: 'center', justifyItems: 'center'}}>
+      <Container style={{paddingRight: '0px'}}>
         <Card>
           {this.state.msgRemove && (
             <div
