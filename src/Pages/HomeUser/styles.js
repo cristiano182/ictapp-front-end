@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div.attrs({
-  className: "container row bg-dark",
+  className: "container bg-dark ",
   style: {
-    height: "100%",
+    textAlign: 'center',
     marginTop: "5px",
-    marginLeft: "0px",
     borderRadius: "5px"
   }
 })``;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { api } from "../../services/api";
 import { ProgressBar, Modal } from "react-bootstrap";
 import { verifyToken, logout } from "../../services/auth";
+
 import {
   Card,
   Card2,
@@ -121,7 +122,7 @@ export default class HomeUser extends Component {
 
   render() {
     return (
-      <Container style={{paddingRight: '0px'}}>
+      <Container>
         <Card>
           {this.state.msgRemove && (
             <div
@@ -278,7 +279,7 @@ export default class HomeUser extends Component {
             </div>
           </CardBody>
         </Card>
-
+             <div className="row" style={{padding: '0px'}}>          
         <Card2>
           <CardHeader2>
             <strong> Disciplinas já cursadas</strong>
@@ -333,6 +334,7 @@ export default class HomeUser extends Component {
             })}
           </CardBody2>
         </Card2>
+        </div>
       </Container>
     );
   }
