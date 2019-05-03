@@ -94,7 +94,7 @@ export default class Home extends Component {
 
                     </div>
                 </div>
-                <div className="footer" style={{ margin: '0px', padding: '0px', height: '200px', color: 'white' }}>
+                <div className="footer bg-dark" style={{ margin: '0px', padding: '0px', height: '200px', color: 'white' }}>
                     <br /> <br /> <br /> <br /> <br /> <br />
                     <span>© 2019-2020 ICTAPP. </span>
 
