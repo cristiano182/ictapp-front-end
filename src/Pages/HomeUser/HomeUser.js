@@ -121,7 +121,7 @@ export default class HomeUser extends Component {
 
   render() {
     return (
-      <Container style={{alignItems: 'center', alignContent: 'center'}}>
+      <Container style={{marginLeft: '300px'}}>
         <Card>
           {this.state.msgRemove && (
             <div
