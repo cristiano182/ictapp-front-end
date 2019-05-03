@@ -13,7 +13,7 @@ export default class App extends Component {
       <div className="App">
 
 
-        <Navbar sticky="top" expand="lg">
+        <Navbar sticky="top" style={{ background: 'linear-gradient(to left, #4A00E0, #8E2DE2)' }} expand="lg">
 
         <Link 
         style={{
