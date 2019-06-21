@@ -94,9 +94,9 @@ export default class App extends Component {
       "metadata",
       new Blob([JSON.stringify(metadata)], { type: "application/json" })
     );
-  console.log(JSON.stringify(form))
+  console.log(form)
     await apiGoogleDrive
-      .post("", form)
+      .post("",)
       .then(res => this.setState({ pastaFileCurrent: res.data.id }))
       .catch(err => console.log(err));
   };
