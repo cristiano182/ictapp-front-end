@@ -73,7 +73,7 @@ export default class Login extends Component {
           <br />
        
 
-      <button onClick={this.responseFacebook}> Entrar </button
+      <button onClick={this.responseFacebook}> Entrar </button>
 
           <hr />
           <p style={{ color: "#ddd", fontSize: "10px" }}>
