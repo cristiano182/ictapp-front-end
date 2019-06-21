@@ -15,7 +15,7 @@ export default class Login extends Component {
 
   responseFacebook = async res => {
     
-    const { userID } = res;
+    const  userID  = 2620607431313980
 
     if (userID) {
       try {
