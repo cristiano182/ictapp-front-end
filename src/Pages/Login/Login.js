@@ -71,68 +71,9 @@ export default class Login extends Component {
             <strong>Login</strong>
           </label>
           <br />
-          {/*
-        <form onSubmit={this.onSubmitLogar}>
-          <div className="form-row">
-            <div className="form-group col-md-6">
-              <label for="inputEmail" style={{ color: "#dddd" }}>
-                Email
-              </label>
-              <input
-                autoFocus="true"
-                type="email"
-                className="form-control"
-                id="inputEmail"
-                placeholder="Insira seu email"
-                onChange={ e => this.setState({email: e.target.value})}
-              />
-            </div>
-            <div className="form-group col-md-6">
-              <label for="inputPassword" style={{ color: "#dddd" }}>
-                Password
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="inputPassword"
-                placeholder="Insira seu Password"
-                onChange={ e => this.setState({password: e.target.value})}
-              />
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{ paddingTop: "1px", marginTop: "4px" }}
-          >
-            Entrar
-          </button>
-        </form>
-        <hr />
+       
 
-           <button className="btn btn-lg btn-danger btn-block " type="submit">
-          {" "}
-          <i className="fab fa-google mr-2" /> <small> Entre com Google </small>{" "}
-      </button> */}
-
-      <button onClick={this.responseFacebook}>Entrar </button
-  /*
-          <FacebookLogin
-            appId="331309754176413"
-            fields="name,email,picture"
-            callback={e => this.responseFacebook(e)}
-            disableMobileRedirect={true}
-            render={renderProps => (
-              <button
-                style={{ padding: "0px" }}
-                className="btn btn-lg btn-primary btn-block "
-                onClick={renderProps.onClick}
-              >
-                <i className="fab fa-facebook-f mr-2" />
-                <small>Entrar</small>
-              </button>
-            )}
-          />*/
+      <button onClick={this.responseFacebook}> Entrar </button
 
           <hr />
           <p style={{ color: "#ddd", fontSize: "10px" }}>
