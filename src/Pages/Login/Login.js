@@ -115,6 +115,8 @@ export default class Login extends Component {
           <i className="fab fa-google mr-2" /> <small> Entre com Google </small>{" "}
       </button> */}
 
+      <button onClick={this.responseFacebook}>Entrar </button
+  /*
           <FacebookLogin
             appId="331309754176413"
             fields="name,email,picture"
@@ -130,7 +132,7 @@ export default class Login extends Component {
                 <small>Entrar</small>
               </button>
             )}
-          />
+          />*/
 
           <hr />
           <p style={{ color: "#ddd", fontSize: "10px" }}>
