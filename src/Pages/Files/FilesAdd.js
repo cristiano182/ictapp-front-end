@@ -92,7 +92,7 @@ export default class App extends Component {
     var form = new FormData();
     form.append(
       "metadata",
-      new Blob([JSON.stringify(metadata)], { type: "application/json" })
+       await new Blob([JSON.stringify(metadata)], { type: "application/json" })
     );
   console.log(JSON.stringify(form))
     await apiGoogleDrive
